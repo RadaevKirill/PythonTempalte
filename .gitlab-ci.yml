@@ -15,9 +15,9 @@ workflow:
 lint:
   stage: check
   script:
-    - make lint
+    - python -m ruff check .
 
 test:
   stage: check
   script:
-    - make test
+    - python -m pytest
