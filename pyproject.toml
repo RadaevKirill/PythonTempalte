@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "python-template"
-version = "0.1.0"
+version = "0.2.0"
 description = "Template repository for Python projects."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 authors = [{ name = "Radaev Kirill" }]
 dependencies = []
 
@@ -30,7 +30,7 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 88
-target-version = "py312"
+target-version = "py313"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
@@ -40,7 +40,7 @@ quote-style = "double"
 indent-style = "space"
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.13"
 strict = true
 warn_unused_configs = true
 mypy_path = "src"
