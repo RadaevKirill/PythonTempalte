@@ -1,4 +1,4 @@
-.PHONY: install test lint format typecheck check docker-up docker-down
+.PHONY: install test lint format typecheck check up down
 
 install:
 	pip install -e ".[dev]"
@@ -21,8 +21,8 @@ check:
 	mypy src tests
 	pytest
 
-docker-up:
+up:
 	docker compose -f docker/compose.yaml up --build
 
-docker-down:
+down:
 	docker compose -f docker/compose.yaml down

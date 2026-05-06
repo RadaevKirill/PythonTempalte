@@ -1,6 +1,4 @@
-MESSAGE = (
-    "Python template is ready. Replace src.main:main with your application entry point."
-)
+MESSAGE = "Python template is ready. Replace src.main:main with your application entry point."
 
 
 def main() -> None:
