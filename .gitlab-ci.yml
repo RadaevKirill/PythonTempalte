@@ -5,7 +5,8 @@ default:
   image: python:3.13-slim-bookworm
   before_script:
     - python -m pip install --upgrade pip
-    - pip install -e ".[dev]"
+    - pip install uv
+    - uv sync --extra dev
 
 workflow:
   rules:
@@ -15,9 +16,9 @@ workflow:
 lint:
   stage: check
   script:
-    - python -m ruff check .
+    - uv run ruff check .
 
 test:
   stage: check
   script:
-    - python -m pytest
+    - uv run pytest

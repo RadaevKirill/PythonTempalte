@@ -2,9 +2,10 @@
 
 ## Быстрый старт
 
+Для работы с проектом использовать uv
+
 ```bash
-python3.13 -m venv venv
-source venv/bin/activate
+uv sync --extra dev
 make install
 make test
 make check
@@ -33,3 +34,13 @@ Docker-конфигурация находится в `docker/`.
 - `docker/compose.yaml` - локальный запуск через Docker Compose
 - `.gitlab-ci.yml` - пайплайн GitLab CI для merge request
 - `README.md` - описание шаблона
+
+## Примеачния
+
+- Для установки кастомных пакетов из нашего Registry, следует задать переменные окружения
+```bash
+export UV_INDEX_GITLAB_USERNAME="read-package"
+export UV_INDEX_GITLAB_PASSWORD="GAT"
+```
+- Для запуска без `Makefile` можно использовать `uv run app`.
+

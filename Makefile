@@ -1,25 +1,25 @@
 .PHONY: install test lint format typecheck check up down
 
 install:
-	pip install -e ".[dev]"
+	uv sync --extra dev
 
 test:
-	pytest
+	uv run pytest
 
 lint:
-	ruff check .
+	uv run ruff check .
 
 format:
-	ruff format .
+	uv run ruff format .
 
 typecheck:
-	mypy src tests
+	uv run mypy src tests
 
 check:
-	ruff format --check .
-	ruff check .
-	mypy src tests
-	pytest
+	uv run ruff format --check .
+	uv run ruff check .
+	uv run mypy src tests
+	uv run pytest
 
 up:
 	docker compose -f docker/compose.yaml up --build
