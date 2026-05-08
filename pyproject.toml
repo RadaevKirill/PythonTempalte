@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "python-template"
-version = "0.2.0"
+version = "0.3.0"
 description = "Template repository for Python projects."
 readme = "README.md"
 requires-python = ">=3.13"
@@ -20,6 +20,15 @@ dev = [
 
 [project.scripts]
 app = "src.main:main"
+
+[[tool.uv.index]]
+name = "gitlab"
+url = "https://gitlab.mars-saz.ru/api/v4/projects/60/packages/pypi/simple"
+explicit = true
+authenticate = "always"
+
+[tool.uv.sources]
+python-kafka-tools = { index = "gitlab" }
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
