@@ -2,9 +2,9 @@ from collections.abc import AsyncIterator, Iterator
 from contextlib import asynccontextmanager, contextmanager
 from functools import lru_cache
 
-from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.engine import URL, Engine, create_engine
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.orm import Session, sessionmaker
 
 from src.config import get_settings
 
@@ -24,6 +24,7 @@ def get_sync_engine() -> Engine:
 
     return create_engine(url)
 
+
 @lru_cache(maxsize=1)
 def get_async_engine() -> AsyncEngine:
     settings = get_settings()
@@ -41,18 +42,21 @@ def get_async_engine() -> AsyncEngine:
 
 
 @lru_cache(maxsize=1)
-def sync_session_factory():
+def sync_session_factory() -> sessionmaker[Session]:
     return sessionmaker(bind=get_sync_engine(), autoflush=False, expire_on_commit=False)
 
+
 @lru_cache(maxsize=1)
-def async_session_factory():
+def async_session_factory() -> async_sessionmaker[AsyncSession]:
     return async_sessionmaker(bind=get_async_engine(), autoflush=False, expire_on_commit=False)
+
 
 @contextmanager
 def get_sync_session() -> Iterator[Session]:
     factory = sync_session_factory()
     with factory() as session:
         yield session
+
 
 @asynccontextmanager
 async def get_async_session() -> AsyncIterator[AsyncSession]:

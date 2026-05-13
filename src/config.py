@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parents[1]
 ENV_FILE = BASE_DIR / ".env"
 
+
 @dataclass
 class Settings:
     db_host: str
@@ -17,14 +18,16 @@ class Settings:
     db_password: str
     db_driver_sync: str
     db_driver_async: str
+    log_level: str
+
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
-    '''
-        Загружаем настройки из .env файла и кэшируем результат для оптимизации доступа к ним.
-        Здесь в значениях по умолчанию должны быть всегда указаны значения из .env.exapmle, 
-        чтобы при отсутствии .env файла приложение не падало, а использовало эти значения.
-    '''
+    """
+    Загружаем настройки из .env файла и кэшируем результат для оптимизации доступа к ним.
+    Здесь в значениях по умолчанию должны быть всегда указаны значения из .env.exapmle,
+    чтобы при отсутствии .env файла приложение не падало, а использовало эти значения.
+    """
 
     load_dotenv(ENV_FILE, override=True)
 
@@ -36,4 +39,5 @@ def get_settings() -> Settings:
         db_password=os.environ.get("DB_PASSWORD", "postgres"),
         db_driver_sync=os.environ.get("DB_DRIVER_SYNC", "postgresql+psycopg"),
         db_driver_async=os.environ.get("DB_DRIVER_ASYNC", "postgresql+psycopg_async"),
+        log_level=os.environ.get("LOG_LEVEL", "INFO"),
     )

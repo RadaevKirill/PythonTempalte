@@ -22,6 +22,24 @@ uv run app
 
 Локально `make check` запускает полный набор проверок: форматирование, линтер, типизацию и тесты. Docker-конфигурация находится в `docker/`.
 
+## Логирование
+
+В шаблоне настроено базовое логирование через стандартный модуль `logging`.
+
+- инициализация находится в [`src/logger.py`](src/logger.py)
+- уровень логирования задаётся через `LOG_LEVEL` в [`.env.example`](.env.example)
+- для получения логгера в модулях используйте `get_logger(__name__)`
+
+Пример:
+
+```python
+from src.logger import get_logger
+
+logger = get_logger(__name__)
+
+logger.info("Application started")
+```
+
 ## База данных
 
 В шаблоне уже подключены:
@@ -62,6 +80,7 @@ async with get_async_session() as session:
 
 - `src/main.py` - точка входа приложения
 - `src/config.py` - загрузка настроек из `.env`
+- `src/logger.py` - базовая конфигурация логирования
 - `src/infrastructure/db/engine.py` - sync/async engine и session factories
 - `src/models/` - модели SQLAlchemy
 - `tests/test_main.py` - базовый пример теста

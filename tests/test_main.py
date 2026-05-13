@@ -1,9 +1,12 @@
-from pytest import CaptureFixture
+import logging
+
+import pytest
 
 from src.main import MESSAGE, main
 
 
-def test_main(capsys: CaptureFixture[str]) -> None:
+def test_main(caplog: pytest.LogCaptureFixture) -> None:
+    caplog.set_level(logging.INFO)
+
     main()
-    captured = capsys.readouterr()
-    assert captured.out.strip() == MESSAGE
+    assert MESSAGE in caplog.text
