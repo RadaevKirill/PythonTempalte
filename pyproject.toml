@@ -9,10 +9,15 @@ description = "Template repository for Python projects."
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [{ name = "Radaev Kirill" }]
-dependencies = []
+dependencies = [
+    "psycopg[binary]>=3.3.4",
+    "python-dotenv>=1.0.0",
+    "sqlalchemy>=2.0.49",
+]
 
 [project.optional-dependencies]
 dev = [
+  "alembic>=1.18.4",
   "mypy>=1.15.0",
   "pytest>=8.3.0",
   "ruff>=0.11.0",
