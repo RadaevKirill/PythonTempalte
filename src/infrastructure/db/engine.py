@@ -9,7 +9,6 @@ from sqlalchemy.orm import Session, sessionmaker
 from src.config import get_settings
 from src.logger import get_logger
 
-
 logger = get_logger(__name__)
 
 @lru_cache(maxsize=1)
