@@ -11,6 +11,7 @@ from src.logger import get_logger
 
 logger = get_logger(__name__)
 
+
 @lru_cache(maxsize=1)
 def get_sync_engine() -> Engine:
     settings = get_settings()
