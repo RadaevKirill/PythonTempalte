@@ -26,15 +26,6 @@ dev = [
 [project.scripts]
 app = "src.main:main"
 
-[[tool.uv.index]]
-name = "gitlab"
-url = "https://gitlab.mars-saz.ru/api/v4/projects/60/packages/pypi/simple"
-explicit = true
-authenticate = "always"
-
-[tool.uv.sources]
-python-kafka-tools = { index = "gitlab" }
-
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
 
